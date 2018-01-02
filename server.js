@@ -33,6 +33,9 @@ const authCheck = jwt({
     algorithms: ['RS256']
 });
 
+app.get('/', (req, res) => {
+    return res.json({ message: "Welcome to the Meetups API" });
+});
 app.post('/api/meetups', MeetupController.create);
 app.get('/api/meetups/public', MeetupController.getPublicMeetups);
 app.get('/api/meetups/private', authCheck, MeetupController.getPrivateMeetups);
