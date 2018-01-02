@@ -12,6 +12,8 @@ const config = require('./config.js'); // remove .example from /server/config.js
 //const MongoDBUrl = 'mongodb://localhost:27017/meetupapi';
 const MongoDBUrl = 'mongodb://unicodeveloper:pote1142@ds235827.mlab.com:35827/meetup';
 
+const port = process.env.PORT || 3333;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -35,7 +37,7 @@ app.post('/api/meetups', MeetupController.create);
 app.get('/api/meetups/public', MeetupController.getPublicMeetups);
 app.get('/api/meetups/private', authCheck, MeetupController.getPrivateMeetups);
 
-app.listen(3333);
+app.listen(port);
 console.log('Listening on localhost:3333');
  // Once started, connect to Mongo through Mongoose
 mongoose.connect(MongoDBUrl, {}).then(() => { console.log(`Connected to Mongo server`) }, err => { console.log(err) });
